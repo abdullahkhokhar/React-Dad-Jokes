@@ -12,11 +12,16 @@ class JokeList extends Component {
 
   constructor(props){
     super(props);
-    this.state = { jokes: [] };
+    this.state = { jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]")};
   }
 
   // the best place to make a request is in componentDidMount
-  async componentDidMount(){
+  // LOGIC --> if there are jokes in local storage use then, otherwise fetch 10 new jokes
+  componentDidMount(){
+    if(this.state.jokes.length === 0) this.getJokes();
+  }
+
+  async getJokes(){
     let jokes = [];
     while(jokes.length < this.props.numJokesToGet){
       // load new jokes with a request
@@ -28,6 +33,12 @@ class JokeList extends Component {
       jokes.push({id: uuid(), text: res.data.joke, votes: 0});
     }
     this.setState({jokes: jokes}); // overwrite the old state
+
+    // now we also want to update our window object with the current Jokes
+    window.localStorage.setItem(
+      "jokes",
+      JSON.stringify(jokes)
+    )
   }
 
   handleVote(id, delta){
