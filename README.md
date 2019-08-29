@@ -1,6 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Application Interface
 ![](https://media.giphy.com/media/ZCxCZy1rZRb5gTRd09/giphy.gif)
+
+## Fetch Jokes!
+![](https://media.giphy.com/media/Rgt8xkP2ifqpcoeVsv/giphy.gif)
 
 ## Dad Jokes
 
